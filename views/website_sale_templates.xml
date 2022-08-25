@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="website_sale_product" inherit_id="jt_product_properties_website.website_sale_product">
+        <xpath expr="//div[hasclass('card')][last()]" position="after">
+            <div class="card bg-white" data-name="Item">
+                <a href="#" t-attf-data-target="#myCollapseTab{{uniq}}_2" role="tab" data-toggle="collapse" aria-expanded="false" class="collapsed card-header s_faq_collapse_right_icon">Documents</a>
+                <div t-attf-id="myCollapseTab{{uniq}}_2" class="collapse" data-parent="#myCollapse" role="tabpanel">
+                    <div class="card-body">
+                        <p class="card-text">
+                            <div class="product_documents o_not_editable"/>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </xpath>
+    </template>
+
+    <template id="website_sale_product_documents" name="Shop product documents">
+        <t t-if="has_product_documents">
+        <ul>
+            <t t-foreach="documents" t-as="doc">
+                <li>
+                    <a t-att-href="'/document/download/%s/%s/%s' % (product_website_share.id , product_website_share.access_token ,doc['id'])" t-esc="doc['name']"/>
+                </li>
+            </t>
+        </ul>
+        </t>
+        <t t-else="">
+            No documents available
+        </t>
+    </template>    
+
+</odoo>
