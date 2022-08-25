@@ -19,7 +19,6 @@ class WebsiteSaleStockDocumentsVariantController(WebsiteSaleVariantController):
                 'name': doc.name,
             })
 
-
         documents_view = request.env['ir.ui.view']._render_template('jt_documents_website.website_sale_product_documents', values={
             'has_product_documents': len(documents) > 0,
             'documents': documents,

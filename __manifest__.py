@@ -17,7 +17,11 @@
     'version': '0.3',
 
     # any module necessary for this one to work correctly
-    'depends': ['base','documents_product'],
+    'depends': [
+        'base',
+        'documents_product',
+        'jt_product_properties_website',
+        ],
 
     # always loaded
     'data': [
@@ -30,8 +34,4 @@
             'jt_documents_website/static/src/js/**/*',
         ],
     },      
-    # only loaded in demonstration mode
-    'demo': [
-        'demo/demo.xml',
-    ],
 }
