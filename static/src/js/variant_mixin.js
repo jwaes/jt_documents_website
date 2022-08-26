@@ -45,7 +45,7 @@ VariantMixin._onChangeCombinationProductDocuments = function (ev, $parent, combi
 
         let file_name = $(this).attr('data-name');
         let file_extension = $(this).attr('data-file-extension');
-        let file_url = $(this).attr('data-link-url');
+        let file_url = $(this).attr('href');
         
         const trackingInfo = {
             'file_name': file_name,

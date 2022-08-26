@@ -15,7 +15,7 @@ class WebsiteSaleStockDocumentsVariantController(WebsiteSaleVariantController):
 
         documents = []
         for doc in product.product_document_website_ids:
-            ext = splitext(doc.name)[1].replace(".","")
+            ext = splitext(doc.name)[1].replace(".","").lower()
             documents.append({
                 'id': doc.id,
                 'name': doc.name,
