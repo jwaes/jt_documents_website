@@ -38,10 +38,30 @@ VariantMixin._onChangeCombinationProductDocuments = function (ev, $parent, combi
     if (!this.isWebsite || !isMainProduct) {
         // return;
     }
-    console.log("updating documents ");
 
     $('div.product_documents').html(combination.product_documents);
 
+    $("a.track_document_download").click(function(){
+
+        let file_name = $(this).attr('data-name');
+        let file_extension = $(this).attr('data-file-extension');
+        let file_url = $(this).attr('data-link-url');
+        
+        const trackingInfo = {
+            'file_name': file_name,
+            'link_url': file_url,
+            'file_extension': file_extension,
+        };
+
+        if(window.gtag){
+            window.gtag("event", "file_download", {
+                file_name: file_name,
+                link_url: file_url,
+                file_extension: file_extension,
+            });
+        }
+
+    });
 };
 
 publicWidget.registry.WebsiteSale.include({
@@ -53,17 +73,7 @@ publicWidget.registry.WebsiteSale.include({
         this._super.apply(this, arguments);
         VariantMixin._onChangeCombinationProductDocuments.apply(this, arguments);
     },
-    /**
-     * Recomputes the combination after adding a product to the cart
-     * @override
-     */
-    // _onClickAdd(ev) {
-    //     return this._super.apply(this, arguments).then(() => {
-    //         if ($('div.availability_messages').length) {
-    //             this._getCombinationInfo(ev);
-    //         }
-    //     });
-    // }
+
 });
 
 return VariantMixin;

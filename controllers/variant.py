@@ -1,6 +1,7 @@
 from odoo import http
 from odoo.http import request
 from odoo.addons.website_sale.controllers.variant import WebsiteSaleVariantController
+from os.path import splitext
 
 class WebsiteSaleStockDocumentsVariantController(WebsiteSaleVariantController):
     @http.route()
@@ -14,9 +15,11 @@ class WebsiteSaleStockDocumentsVariantController(WebsiteSaleVariantController):
 
         documents = []
         for doc in product.product_document_website_ids:
+            ext = splitext(doc.name)[1].replace(".","")
             documents.append({
                 'id': doc.id,
                 'name': doc.name,
+                'file_extension': ext,
             })
 
         documents_view = request.env['ir.ui.view']._render_template('jt_documents_website.website_sale_product_documents', values={

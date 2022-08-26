@@ -18,10 +18,16 @@
 
     <template id="website_sale_product_documents" name="Shop product documents">
         <t t-if="has_product_documents">
+        
         <ul>
             <t t-foreach="documents" t-as="doc">
                 <li>
-                    <a t-att-href="'/document/download/%s/%s/%s' % (product_website_share.id , product_website_share.access_token ,doc['id'])" t-esc="doc['name']"/>
+                    <a t-att-href="'/document/download/%s/%s/%s' % (product_website_share.id , product_website_share.access_token ,doc['id'])"
+                        class="track_document_download"
+                        t-esc="doc['name']"
+                        t-att-data-name="doc['name']"
+                        t-att-data-link-url="'/document/download/%s/%s/%s' % (product_website_share.id , product_website_share.access_token ,doc['id'])"
+                        t-att-data-file-extension="doc['file_extension']" />
                 </li>
             </t>
         </ul>
