@@ -2,6 +2,7 @@ from odoo import http
 from odoo.http import request
 from odoo.addons.website_sale.controllers.variant import WebsiteSaleVariantController
 from os.path import splitext
+from odoo.tools.misc import get_lang
 
 class WebsiteSaleStockDocumentsVariantController(WebsiteSaleVariantController):
     @http.route()
@@ -22,7 +23,9 @@ class WebsiteSaleStockDocumentsVariantController(WebsiteSaleVariantController):
                 'file_extension': ext,
             })
 
-        documents_view = request.env['ir.ui.view']._render_template('jt_documents_website.website_sale_product_documents', values={
+        lang = get_lang(request.env).code
+
+        documents_view = request.env['ir.ui.view'].with_context(lang=lang)._render_template('jt_documents_website.website_sale_product_documents', values={
             'has_product_documents': len(documents) > 0,
             'documents': documents,
             'product_website_share': product_website_share,
