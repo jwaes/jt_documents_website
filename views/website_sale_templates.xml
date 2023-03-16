@@ -8,7 +8,15 @@
                 <div t-attf-id="myCollapseTab{{uniq}}_doc" class="collapse" data-parent="#myCollapse" role="tabpanel">
                     <div class="card-body">
                         <p class="card-text">
-                            <div class="product_documents o_not_editable"/>
+                            <div class="product_documents o_not_editable">
+                                <t t-if="product.is_custom_made_product">
+                                    <t t-call="jt_documents_website.website_sale_product_documents">
+                                        <t t-set="documents" t-value="product._get_product_website_document_array()"/>
+                                        <t t-set="has_product_documents" t-value="product._has_product_website_documents()"/>
+                                        <t t-set="product_website_share" t-value="product._get_product_document_website_share()"/>
+                                    </t>
+                                </t>
+                            </div>                        
                         </p>
                     </div>
                 </div>
@@ -19,17 +27,17 @@
     <template id="website_sale_product_documents" name="Shop product documents">
         <t t-if="has_product_documents">
         
-        <ul class="pl-1 list-unstyled">
-            <t t-foreach="documents" t-as="doc">
-                <li class="mdi mdi-file-outline">
-                    <a t-att-href="'/document/download/%s/%s/%s' % (product_website_share.id , product_website_share.access_token ,doc['id'])"
-                        class="track_document_download"
-                        t-esc="doc['name']"
-                        t-att-data-name="doc['name']"
-                        t-att-data-file-extension="doc['file_extension']" />
-                </li>
-            </t>
-        </ul>
+            <ul class="pl-1 list-unstyled">
+                <t t-foreach="documents" t-as="doc">
+                    <li class="mdi mdi-file-outline">
+                        <a t-att-href="'/document/download/%s/%s/%s' % (product_website_share.id , product_website_share.access_token ,doc['id'])"
+                            class="track_document_download"
+                            t-esc="doc['name']"
+                            t-att-data-name="doc['name']"
+                            t-att-data-file-extension="doc['file_extension']" />
+                    </li>
+                </t>
+            </ul>
         </t>
         <t t-else="">
             No documents available
