@@ -31,7 +31,7 @@
                 <t t-foreach="documents" t-as="doc">
                     <li class="mdi mdi-file-outline">
                         <a t-att-href="'/document/download/%s/%s/%s' % (product_website_share.id , product_website_share.access_token ,doc['id'])"
-                            class="track_document_download"
+                            class="track_document_download text-lowercase"
                             t-esc="doc['name']"
                             t-att-data-name="doc['name']"
                             t-att-data-file-extension="doc['file_extension']" />
