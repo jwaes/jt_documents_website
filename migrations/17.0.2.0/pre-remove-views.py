@@ -17,5 +17,5 @@ def migrate(cr, version):
         _logger.info("About to remove view %s", view)
         util.remove_view(cr, xml_id=view)
     
-    util.remove_record(cr, xml_id='jt_documents_website.res_config_settings_view_form')
+    util.remove_record(cr, 'jt_documents_website.res_config_settings_view_form')
 
