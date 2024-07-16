@@ -24,7 +24,7 @@ def migrate(cr, version):
             record.shown_on_product_page = True
         elif record.res_model == 'product.product':
             _logger.info("variant is problematic")
-            product = util.env(cr)[record.res_model].browse(record.attachment_id.id)
+            product = util.env(cr)[record.res_model].browse(record.res_id)
             record.res_model = 'product.template'
             record.res_id = product.product_tmpl_id.id
             record.shown_on_product_page = True
