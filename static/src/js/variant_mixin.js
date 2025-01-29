@@ -1,5 +1,3 @@
-/** @odoo-module **/
-
 import VariantMixin from "@website_sale/js/variant_mixin";
 
 const originalOnChangeCombination = VariantMixin._onChangeCombination;
