@@ -1,4 +1,4 @@
-import VariantMixin from "@website_sale/js/variant_mixin";
+import VariantMixin from "@website_sale/js/sale_variant_mixin";
 
 const originalOnChangeCombination = VariantMixin._onChangeCombination;
 VariantMixin._onChangeCombinationProductDocuments = function (ev, $parent, combination) {
